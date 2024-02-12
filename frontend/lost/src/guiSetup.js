@@ -122,6 +122,7 @@ const RunningPipelines = {
 const StartPipelines = {
     name: 'Start Pipeline',
     to: '/startpipeline',
+    className: "step2",
     component: StartPipelineComponent,
     icon: <FaPlay {...iconProps} />,
 }

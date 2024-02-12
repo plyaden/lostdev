@@ -19,7 +19,7 @@ const HelpButton = ({ text, id, disabled }) => {
                         marginLeft: 10,
                         borderRadius: 40,
                     }}
-                    disabled={disabled}
+                    disabled={true}
                     onMouseEnter={() => setIsToolTipOpen(true)}
                     onMouseLeave={() => {
                         setIsToolTipOpen(false)

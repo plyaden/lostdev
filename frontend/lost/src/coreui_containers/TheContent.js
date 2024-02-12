@@ -1,6 +1,7 @@
-import React  from 'react'
+import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { CContainer, CFade } from '@coreui/react'
+import { JoyrideProvider } from '../components/Tours/JoyrideProvider'
 
 // routes config
 // import routes from '../routes'
@@ -8,7 +9,8 @@ import { CContainer, CFade } from '@coreui/react'
 
 const TheContent = ({ routes }) => (
     <main className="c-main">
-        <CContainer fluid>
+        
+            <CContainer fluid>
                 <Switch>
                     {routes.map(
                         (route) =>
@@ -27,7 +29,7 @@ const TheContent = ({ routes }) => (
                             ),
                     )}
                 </Switch>
-        </CContainer>
+            </CContainer>
     </main>
 )
 

@@ -9,6 +9,8 @@ import { CChart } from '@coreui/react-chartjs'
 import ChartLineSimple from './ChartLineSimple'
 import Loading from '../../components/Loading'
 
+
+
 const PersonalStatistics = () => {
     const dispatch = useDispatch()
     const { mutate: getPersonalStatistics, data: personalStatistics } =
@@ -59,6 +61,7 @@ const PersonalStatistics = () => {
     if (personalStatistics === undefined)
         return (
             <>
+
                 <CRow style={{ display: 'flex', justifyContent: 'center', fontSize: 20 }}>
                     <b>Statistics not yet available.</b>
                 </CRow>

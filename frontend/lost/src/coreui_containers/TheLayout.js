@@ -11,6 +11,8 @@ import TheHeader from './TheHeader'
 import guiSetup from '../guiSetup'
 import actions from '../actions'
 
+
+
 const TheLayout = () => {
     const role = useRef()
     const history = useHistory()
@@ -83,16 +85,17 @@ const TheLayout = () => {
     }, [i18n.language])
 
     return (
-        <div className="c-app c-default-layout">
-            <TheSidebar navItems={navItems} />
-            <div className="c-wrapper">
-                <TheHeader numNavItems={navItems.length}/>
-                <div className="c-body">
-                    <TheContent routes={routes} />
+            <div className="c-app c-default-layout">
+                <TheSidebar navItems={navItems} />
+                <div className="c-wrapper">
+                    <TheHeader numNavItems={navItems.length}/>
+                    <div className="c-body">
+                        <TheContent routes={routes} />
+                    </div>
+                    <TheFooter />
                 </div>
-                <TheFooter />
             </div>
-        </div>
+        
     )
 }
 

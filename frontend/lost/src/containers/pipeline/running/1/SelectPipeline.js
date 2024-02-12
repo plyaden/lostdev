@@ -9,6 +9,8 @@ import IconButton from '../../../../components/IconButton'
 import HelpButton from '../../../../components/HelpButton'
 import { Progress } from 'reactstrap'
 import { getColor } from '../../../../containers/Annotation/AnnoTask/utils'
+
+
 const { getPipelines, getPipeline, verifyTab, selectTab, reset } = actions
 
 class SelectPipeline extends Component {
@@ -22,6 +24,7 @@ class SelectPipeline extends Component {
     async componentDidMount() {
         const showAlert = true
         await this.props.getPipelines(showAlert)
+        
     }
 
     componentDidUpdate() {
@@ -41,6 +44,7 @@ class SelectPipeline extends Component {
     }
 
     selectRow(id) {
+            
         this.props.verifyTab(0, true)
         this.props.selectTab(1)
         this.props.reset()
@@ -151,6 +155,7 @@ class SelectPipeline extends Component {
                             Cell: (row) => {
                                 return (
                                     <IconButton
+                                        className="firstStep"
                                         color="primary"
                                         size="m"
                                         isOutline={false}

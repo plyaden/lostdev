@@ -18,6 +18,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/react-router-dom": "^5.3.3",
     "axios": "^0.21.2",
     "chonky": "^2.1.0",
     "chonky-icon-fontawesome": "^2.1.0",
@@ -41,6 +42,7 @@
     "react-graph-vis": "^1.0.7",
     "react-i18next": "^11.8.5",
     "react-icons": "^4.1.0",
+    "react-joyride": "^2.5.5",
     "react-modal": "^3.8.1",
     "react-notifications": "^1.4.3",
     "react-query": "^3.31.0",
@@ -64,7 +66,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "REACT_APP_PORT='9998' react-scripts start",
+    "start": "REACT_APP_PORT='80' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

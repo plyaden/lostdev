@@ -12,6 +12,10 @@ import { flatObj } from './utils'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import jwtDecode from 'jwt-decode'
 import { API_URL } from './lost_settings'
+import { JoyrideProvider } from './components/Tours/JoyrideProvider'
+import JoyrideComponent from './components/Tours/JoyrideComponent'
+
+
 
 const queryClient = new QueryClient()
 
@@ -97,7 +101,13 @@ function App() {
                                 name="Logout Page"
                                 component={Logout}
                             />
-                            <Route path="/" name="Home" render={() => <TheLayout />} />
+                            <Route path="/" name="Home" render={() => 
+                                <JoyrideProvider>
+                                    <JoyrideComponent />
+                                    <TheLayout />  
+                                </JoyrideProvider>
+                                } 
+                            />
                         </Switch>
                     </BrowserRouter>
                 </Suspense>
