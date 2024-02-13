@@ -12,7 +12,16 @@ import actions from '../actions'
 //JoyrideSetup
 
 import { useJoyride } from '../components/Tours/JoyrideProvider';
+/*
+export class App extends React.Component {
+  state = {
+    run: false,
+    steps: [],
+  };
 
+  render () {
+    const { run, stepIndex, steps } = this.state;
+*/
 const TheHeader = ({ numNavItems }) => {
     const dispatch = useDispatch()
     const isNavBarVisible = useSelector((state) => state.lost.isNavBarVisible)
@@ -59,11 +68,10 @@ const TheHeader = ({ numNavItems }) => {
                 className='step1'
                 onClick={() => {
                     console.log('Button clicked!');
-                   // startJoyride(Object.values(joyrideStepsConfig));
                    startJoyride([
                     { target: '.step1', content: 'U started a Guide-Tour, to create a new Annotationpipline'  },
                     { target: '.step2', content: 'If u want to create a new Pipline for annotationtaks, u need to click on Start Pipline' },
-                    { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-1 > div > div.rt-table > div.rt-tbody > div:nth-child(6) > div > div:nth-child(3) > button', content: 'Here you can chose a Annotation Modus, for our example we take the sia guide. Please click on Start!'},
+                    { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-1 > div > div.rt-table > div.rt-tbody > div:nth-child(6) > div > div:nth-child(3) > button', content: 'Here you can chose a Annotation Modus, for our example we take the sia guide. Please click on Start!' },
                     { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-2 > div:nth-child(2) > svg > g > g > g.nodes > g:nth-child(1)', content: 'Jojojo'},
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-body > div > div:nth-child(1) > div > div > button', content: '123s'},
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-footer > button > span', content: 'And to acept click on "Okay"'},

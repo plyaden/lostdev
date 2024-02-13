@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { CContainer, CFade } from '@coreui/react'
-import { JoyrideProvider } from '../components/Tours/JoyrideProvider'
 
 // routes config
 // import routes from '../routes'

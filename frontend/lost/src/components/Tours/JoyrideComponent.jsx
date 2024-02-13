@@ -1,4 +1,3 @@
-// JoyrideComponent.jsx
 import React, { useEffect } from 'react';
 import { useJoyride } from './JoyrideProvider';
 import Joyride from 'react-joyride';
@@ -7,8 +6,14 @@ const JoyrideComponent = () => {
     const { joyrideSteps, runJoyride, startJoyride, handleJoyrideCallback } = useJoyride();
 
     useEffect(() => {
+        const startJoyrideWithDelay = () => {
+            setTimeout(() => {
+                startJoyride(Object.values(joyrideSteps));
+            }, 1000); // Adjust the delay time as needed
+        };
+
         if (joyrideSteps.length > 0 && !runJoyride) {
-            startJoyride(Object.values(joyrideSteps));
+            startJoyrideWithDelay();
         }
     }, [runJoyride, joyrideSteps]);
 
@@ -16,11 +21,14 @@ const JoyrideComponent = () => {
         <div>
             {console.log("render")}
             <Joyride
+                disableOverlayClose={true}
+                hideCloseButton={true}
                 steps={joyrideSteps}
                 run={runJoyride}
-                continuous
                 scrollToFirstStep
+                showProgress
                 showSkipButton
+                continuous
                 callback={handleJoyrideCallback}
                 styles={{
                     options: {
@@ -32,8 +40,7 @@ const JoyrideComponent = () => {
                         width: 200,
                         zIndex: 1200,
                     }
-                }
-                }
+                }}
             />
         </div>
     );

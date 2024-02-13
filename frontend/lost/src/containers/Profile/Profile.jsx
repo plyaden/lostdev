@@ -217,7 +217,6 @@ const Profile = () => {
                         icon={faDotCircle}
                         text={t('myProfile.submit')}
                     />
-                    <JoyrideConsumerComponent />
                 </Form>
             </Col>
         </BaseContainer>
