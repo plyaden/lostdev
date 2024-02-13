@@ -1,9 +1,11 @@
 //JoyrideProvider.jsx
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useMount, useSetState} from 'react-use'
 import { useHistory } from 'react-router-dom';
 
 const JoyrideContext = createContext();
+
 
 
 export const JoyrideProvider = ({ children }) => {
@@ -19,62 +21,66 @@ export const JoyrideProvider = ({ children }) => {
     handleJoyrideCallback([]);
     setJoyrideSteps(steps);
     setRunJoyride(true);
-    console.log("Joyride started with steps:", steps);
+    
   };
-
+  // useMount(() => {
+  //   // setState
+  // })
 
   useEffect(() => {
+    console.log("RunJoyride: " + runJoyride);
+  
     const startJoyrideWithDelay = () => {
-        setTimeout(() => {
-            startJoyride(Object.values(joyrideSteps));
-        }, 1000); // Adjust the delay time as needed
+      setTimeout(() => {
+        startJoyride(Object.values(joyrideSteps));
+      }, 1000);
     };
-
+  
     if (joyrideSteps.length > 0 && !runJoyride) {
-        startJoyrideWithDelay();
+      startJoyrideWithDelay();
     }
-}, [runJoyride, joyrideSteps]);
+  }, [runJoyride, joyrideSteps]);
 
-  var counter = 0;
+  
 
   const handleJoyrideCallback = (data) => {
-    const { action, index, statusType, type } = data;
-    console.log("Joyride index:", index);
-
-
+    const { action, index, type } = data;
+    const currentStepTarget = joyrideSteps[index]?.target;
+   console.log(index)
     if (action === "reset" && index === joyrideSteps.length - 1) {
-      console.log("Resetting Joyride");
-      setRunJoyride(false);
+      setRunJoyride((prevRunJoyride) => !prevRunJoyride);
       setAllowJoyrideCallback(true);
     } else if (type === 'step:after') {
-
+      const nextStepTarget = document.querySelector(joyrideSteps[index + 1]?.target);
+      if (nextStepTarget) {
+        console.log("Allowed");
+        setAllowJoyrideCallback(true);
+      }
     }
-
+  
     if (!allowJoyrideCallback) {
       console.log('Joyride callback is currently blocked.');
       return;
     }
-
+  
     if (action === 'next' && index === 2 && window.location.href !== "./startpipeline") {
-      console.log('Handling step index 2');
-
-
       setAllowJoyrideCallback(false);
-
-
-      setRunJoyride(false);
-
-
+      setRunJoyride((prevRunJoyride) => !prevRunJoyride);
+  
       history.push("/startpipeline");
-
-
-
-
-
+  
+      // Delay before continuing the joyride
+      // setTimeout(() => {
+        setRunJoyride((prevRunJoyride) => !prevRunJoyride);
+        
+      // }, 1000); 
     }
-    setRunJoyride(true);
-    setAllowJoyrideCallback(true);
   };
+  
+
+
+  
+  
 
   const value = {
     joyrideSteps,

@@ -5,21 +5,22 @@ import Joyride from 'react-joyride';
 const JoyrideComponent = () => {
     const { joyrideSteps, runJoyride, startJoyride, handleJoyrideCallback } = useJoyride();
 
-    useEffect(() => {
-        const startJoyrideWithDelay = () => {
-            setTimeout(() => {
-                startJoyride(Object.values(joyrideSteps));
-            }, 1000); // Adjust the delay time as needed
-        };
 
-        if (joyrideSteps.length > 0 && !runJoyride) {
-            startJoyrideWithDelay();
-        }
-    }, [runJoyride, joyrideSteps]);
+
+    // useEffect(() => {
+    //     const startJoyrideWithDelay = () => {
+    //         setTimeout(() => {
+    //             startJoyride(Object.values(joyrideSteps));
+    //         }, 1000); // Adjust the delay time as needed
+    //     };
+
+    //     // if (joyrideSteps.length > 0 && !runJoyride) {
+    //     //     startJoyrideWithDelay();
+    //     // }
+    // });
 
     return (
         <div>
-            {console.log("render")}
             <Joyride
                 disableOverlayClose={true}
                 hideCloseButton={true}
@@ -28,7 +29,7 @@ const JoyrideComponent = () => {
                 scrollToFirstStep
                 showProgress
                 showSkipButton
-                continuous
+                continuous//={false} //Route zum selbstweiterschalfen
                 callback={handleJoyrideCallback}
                 styles={{
                     options: {
