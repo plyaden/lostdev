@@ -12,9 +12,9 @@ import { flatObj } from './utils'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import jwtDecode from 'jwt-decode'
 import { API_URL } from './lost_settings'
-import { JoyrideProvider } from './components/Tours/JoyrideProvider'
-import JoyrideComponent from './components/Tours/JoyrideComponent'
-
+//import { JoyrideProvider } from './components/Tours/JoyrideProvider'
+//import JoyrideComponent from './components/Tours/JoyrideComponent'
+import { JoyrideProvider } from './components/Tours/JoyrideProvide'
 
 
 const queryClient = new QueryClient()
@@ -103,7 +103,6 @@ function App() {
                             />
                             <Route path="/" name="Home" render={() => 
                                 <JoyrideProvider>
-                                    <JoyrideComponent />
                                     <TheLayout />  
                                 </JoyrideProvider>
                                 } 

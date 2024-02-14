@@ -8,7 +8,7 @@ import actions from '../../actions'
 import * as REQUEST_STATUS from '../../types/requestStatus'
 import * as Notification from '../../components/Notification'
 import BaseContainer from '../../components/BaseContainer'
-import JoyrideConsumerComponent from '../../components/Tours/JoyrideConsumerExample'
+
 
 const Profile = () => {
     const dispatch = useDispatch()

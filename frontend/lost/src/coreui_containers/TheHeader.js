@@ -11,7 +11,9 @@ import actions from '../actions'
 
 //JoyrideSetup
 
-import { useJoyride } from '../components/Tours/JoyrideProvider';
+// import { useJoyride } from '../components/Tours/JoyrideProvider';
+import { useJoyride } from '../components/Tours/JoyrideProvide'
+
 /*
 export class App extends React.Component {
   state = {
