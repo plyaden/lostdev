@@ -2,17 +2,21 @@
 import React, { createContext, useContext, useEffect, useRef } from 'react';
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
+
+import { selectPipelineById } from '../../actions/Joyride/joyRideActions';
 const JoyrideContext = createContext();
 
 export const JoyrideProvider = ({ children }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [state, setState] = React.useState({
     run: false,
     stepIndex: 0,
     steps: [],
   });
-
+  
   // Ref, um zu verfolgen, ob die Komponente gemountet ist
   const isMounted = useRef(true);
 
@@ -46,7 +50,7 @@ export const JoyrideProvider = ({ children }) => {
 
   const handleJoyrideCallback = (data) => {
     const { action, index, status, type } = data;
-  
+
     // Logik zur Handhabung des Abschlusses oder Überspringens der Tour
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
       console.log("1.")
@@ -56,20 +60,20 @@ export const JoyrideProvider = ({ children }) => {
       let nextStepIndex = index + (action === ACTIONS.PREV ? -1 : 1);
       console.log("2.")
       // Anpassung des Zustands basierend auf spezifischen Bedingungen
-      if (action === ACTIONS.NEXT && index === 1||2) {
+      if (action === ACTIONS.NEXT && index === 1 || 2) {
         // Beispiel: Navigation durchführen, wenn notwendig
         console.log("3.")
-        if(index === 1) {history.push("./startpipeline");}
-        // if(index === 2) {history.push("");}
-        
+        if (index === 1) { history.push("./startpipeline") }
+        if (index === 2) { dispatch(selectPipelineById(6)) }
+
         setTimeout(() => {
           console.log("4.")
           //if (isMounted.current) {
-            setState((prevState) => ({
-              ...prevState,
-              run: true,
-              stepIndex: nextStepIndex,
-            }));
+          setState((prevState) => ({
+            ...prevState,
+            run: true,
+            stepIndex: nextStepIndex,
+          }));
           //}
         }, 1000);
       }
@@ -83,20 +87,20 @@ export const JoyrideProvider = ({ children }) => {
               stepIndex: nextStepIndex,
             }));
           }
-        }, 300); 
-         // Normaler Delay und Rendereffekte abzufangen
+        }, 300);
+        // Normaler Delay und Rendereffekte abzufangen
 
       }
-      
-     
-      
+
+
+
     } else {
 
-      
+
       // Hier können zusätzliche Fälle behandelt werden
     }
   };
-  
+
   // Beispiel für eine Funktion, um die Tour zu starten oder fortzusetzen
   const startOrContinueTour = (stepIndex = 0) => {
     setState((prevState) => ({
@@ -105,7 +109,7 @@ export const JoyrideProvider = ({ children }) => {
       stepIndex,
     }));
   };
-  
+
   // Beim Start oder Neustart der Tour
   useEffect(() => {
     startOrContinueTour(); // Beginnen Sie die Tour von vorne
@@ -116,7 +120,7 @@ export const JoyrideProvider = ({ children }) => {
       }
     };
   }, []);
-  
+
 
   return (
     <JoyrideContext.Provider value={{ startJoyride, stopJoyride, setStepIndex, setSteps }}>
@@ -126,11 +130,13 @@ export const JoyrideProvider = ({ children }) => {
         continuous
         showSkipButton
         spotlightClicks
+        showProgress
         callback={handleJoyrideCallback}
         styles={{
           options: {
             zIndex: 1000
-          }}}
+          }
+        }}
       />
     </JoyrideContext.Provider>
   );
