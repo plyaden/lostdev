@@ -1,4 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
+
+
+
 const INITITAL_STATE = {
     stepper: {
         style: {
@@ -62,6 +65,7 @@ const INITITAL_STATE = {
         name: '',
         description: '',
     },
+    // datasourceDropdownOpen: false,
 }
 
 const INITITAL_STATE_SIA_ANNO_TASK_MODAL = {
@@ -587,8 +591,8 @@ export default (state = INITITAL_STATE, action) => {
                                 id: el.peN,
                                 verified: el.script.arguments
                                     ? Object.keys(el.script.arguments).filter(
-                                          (el2) => !el.script.arguments[el2].value,
-                                      ).length === 0
+                                        (el2) => !el.script.arguments[el2].value,
+                                    ).length === 0
                                     : true,
                                 type: 'script',
                                 title: 'Script',
@@ -707,7 +711,6 @@ export default (state = INITITAL_STATE, action) => {
                     }),
                 },
             }
-
         // TAB2
         case 'PIPELINE_START_NAME_INPUT':
             return {

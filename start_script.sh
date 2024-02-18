@@ -25,3 +25,5 @@ cd ~/Documents/Lost/lost/frontend/lost
 
 # Schritt 7
 npm start
+
+body > div:nth-child(9) > div > div.modal.fade.show > div > div > div.modal-body > div > div:nth-child(1) > div > div > button

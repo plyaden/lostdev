@@ -1,4 +1,7 @@
+//joyRideActions.js
+
 import pipelineStartActions from "../pipeline/pipelineStart";
+
 
 export const selectPipelineById = (id) => async (dispatch, getState) => {
 
@@ -8,3 +11,19 @@ export const selectPipelineById = (id) => async (dispatch, getState) => {
     dispatch(pipelineStartActions.selectTab(1));
     
 }
+
+export const handleNodeClick = (id) => (dispatch, getState) => {
+    // Zugriff auf den aktuellen Zustand des Stores
+    const state = getState();
+    const elements = state.pipelineStart.step1Data.elements;
+    const element = elements.find((el) => el.peN === id);
+    const isDataExport = 'dataExport' in element;
+    const isVisualOutput = 'visualOutput' in element;
+
+    // Entscheiden, ob `toggleModal` aufgerufen werden soll
+    if (!isDataExport && !isVisualOutput) {
+        dispatch(pipelineStartActions.toggleModal(id));
+    }
+};
+
+// hier soll der Zustand von dem Dropdownmenü verarbeitet werden oder weitergegeben?

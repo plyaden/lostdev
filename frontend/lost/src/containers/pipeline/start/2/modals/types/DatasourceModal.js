@@ -1,3 +1,5 @@
+//DatasourceModal.js
+
 import React, { Component } from 'react'
 import LostFileBrowser from '../../../../../../components/FileBrowser/LostFileBrowser'
 import Table from '../../../../globalComponents/modals/Table'

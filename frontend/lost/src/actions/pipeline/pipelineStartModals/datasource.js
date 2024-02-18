@@ -1,4 +1,8 @@
-const selectDropdown = (elementId, path, fs_id) => {
+//datasource.js
+
+
+
+export const selectDropdown = (elementId, path, fs_id) => {
     return {
         type: 'PIPELINE_START_DATASOURCE_SELECT_DROPDOWN',
         payload: {
@@ -7,7 +11,7 @@ const selectDropdown = (elementId, path, fs_id) => {
     }
 }
 
-const pipeStartUpdateDS = (elementId, value) => {
+export const pipeStartUpdateDS = (elementId, value) => {
     return {
         type: 'PIPELINE_START_DATASOURCE_UPDATE',
         payload: {
@@ -15,6 +19,8 @@ const pipeStartUpdateDS = (elementId, value) => {
         }
     }
 }
+
+
 
 export default {
     selectDropdown, pipeStartUpdateDS
