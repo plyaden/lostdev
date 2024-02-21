@@ -284,6 +284,7 @@ export default (state = INITITAL_STATE, action) => {
                 ...state,
                 step1Data: {
                     ...state.step1Data,
+                    // datasourceDropdownOpen: false,
                     elements: state.step1Data.elements.map((el) => {
                         if ('loop' in el && el.peN === action.payload.elementId) {
                             return {
@@ -739,5 +740,14 @@ export default (state = INITITAL_STATE, action) => {
             }
         default:
             return state
+
+        // case 'TOGGLE_DATASOURCE_DROPDOWN':
+        //     return {
+        //         ...state,
+        //         step1Data: {
+        //             ...state.step1Data,
+        //             datasourceDropdownOpen: !state.step1Data.datasourceDropdownOpen, // Toggle the dropdown state
+        //         },
+        //     };
     }
 }

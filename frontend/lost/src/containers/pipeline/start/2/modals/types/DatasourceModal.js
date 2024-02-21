@@ -15,7 +15,6 @@ const DEFAULT_TEXT_PATH = 'No path selected!'
 class DatasourceModal extends Component {
     constructor(props) {
         super(props)
-
         this.toggle = this.toggle.bind(this)
         this.selectItem = this.selectItem.bind(this)
         let selectedFs = undefined

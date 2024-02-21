@@ -3,11 +3,9 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { selectPipelineById, handleNodeClick } from '../../actions/Joyride/joyRideActions';
-
 const JoyrideContext = createContext();
 
-export const JoyrideProvider = ({ children }) => {
+export const AnnoJoyrideProvider = ({ children }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   //const [isModalLoaded, setIsModalLoaded] = useState(false);
@@ -15,7 +13,6 @@ export const JoyrideProvider = ({ children }) => {
     run: false,
     stepIndex: 0,
     steps: [],
-    tourType: '',
   });
 
   const isMounted = useRef(true);
@@ -27,34 +24,33 @@ export const JoyrideProvider = ({ children }) => {
   }, []);
 
   
-  const startJoyride = (steps, tourType) => {
+  const startJoyride = (steps) => {
     if (isMounted.current) {
       setState(prevState => ({
         ...prevState,
         steps,
         run: true,
-        //tourType,
       }));
     }
   };
 
-  // const stopJoyride = () => {
-  //   if (isMounted.current) {
-  //     setState((prevState) => ({ ...prevState, run: false }));
-  //   }
-  // };
+  const stopJoyride = () => {
+    if (isMounted.current) {
+      setState((prevState) => ({ ...prevState, run: false }));
+    }
+  };
 
-  // const setStepIndex = (index) => {
-  //   if (isMounted.current) {
-  //     setState((prevState) => ({ ...prevState, stepIndex: index }));
-  //   }
-  // };
+  const setStepIndex = (index) => {
+    if (isMounted.current) {
+      setState((prevState) => ({ ...prevState, stepIndex: index }));
+    }
+  };
 
-  // const setSteps = (steps) => {
-  //   if (isMounted.current) {
-  //     setState((prevState) => ({ ...prevState, steps }));
-  //   }
-  // };
+  const setSteps = (steps) => {
+    if (isMounted.current) {
+      setState((prevState) => ({ ...prevState, steps }));
+    }
+  };
 
   const checkTargetAvailability = (selector) => {
     console.log("SELECTOR: " + selector)
@@ -74,8 +70,7 @@ export const JoyrideProvider = ({ children }) => {
         console.warn(`Target for step ${nextStepIndex} not found. Adjusting tour logic.`);
         // Adjust logic here, e.g., delay or skip step
       }
-      //if(tourType === 1) {
-        if (action === ACTIONS.NEXT && [1, 2, 3, 4].includes(index)) {
+      if (action === ACTIONS.NEXT && [1, 2, 3, 4].includes(index)) {
 
         if (index === 1) { history.push("./startpipeline"); }
         if (index === 2) { dispatch(selectPipelineById(6)); }
@@ -83,9 +78,7 @@ export const JoyrideProvider = ({ children }) => {
         if (index === 4) {
           console.log(index)
         }
-      //} else if (tourType === 2) {
-        
-      //}
+
         setTimeout(() => {
           if (isMounted.current) {
             setState((prevState) => ({
@@ -110,7 +103,7 @@ export const JoyrideProvider = ({ children }) => {
   };
 
   return (
-    <JoyrideContext.Provider value={{ startJoyride }}>
+    <JoyrideContext.Provider value={{ startJoyride, stopJoyride, setStepIndex, setSteps }}>
       {children}
       <Joyride
         {...state}

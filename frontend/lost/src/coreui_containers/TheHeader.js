@@ -11,7 +11,7 @@ import actions from '../actions'
 
 //JoyrideSetup
 
-// import { useJoyride } from '../components/Tours/JoyrideProvider';
+//import { useJoyride } from '../components/Tours/JoyrideProvider';
 import { useJoyride } from '../components/Tours/JoyrideProvide'
 
 /*
@@ -75,10 +75,12 @@ const TheHeader = ({ numNavItems }) => {
                     { target: '.step2', content: 'If u want to create a new Pipline for annotationtaks, u need to click on Start Pipline' },
                     { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-1 > div > div.rt-table > div.rt-tbody > div:nth-child(6) > div > div:nth-child(3) > button', content: 'Here you can chose a Annotation Modus, for our example we take the sia guide. Please click on Start!' },
                     { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-2 > div:nth-child(2) > svg > g > g > g.nodes > g:nth-child(1)', content: 'Jojojo'},
+                    { target: '.step1', content: 'U started a Guide-Tour, to create a new Annotationpipline'  }, //Filler
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-body > div > div:nth-child(1) > div > div > button', content: '123s'},
-                    { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-header > h5', content: 'And to acept click on "Okay"'},
-                    { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-2 > div:nth-child(2) > svg > g > g > g.nodes > g:nth-child(2) > g > g > foreignObject > div > div > div.graph-node-body > div:nth-child(2)', content: 'Here u can select some options. But it also works with defauelt settings.'},
+                    { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-footer > button', content: 'And to acept click on "Okay"'},
+                    { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-2 > div:nth-child(2) > svg > g > g > g.nodes > g:nth-child(2)', content: 'Here u can select some options. But it also works with defauelt settings.'},
                     { target: '#root > div.c-app.c-default-layout > div.c-wrapper > div > main > div > div > div > div > div > div > div.pipeline-start-2 > div:nth-child(2) > svg > g > g > g.nodes > g:nth-child(3) > g > g > foreignObject > div > div', content: 'Here you need to put in some Informations. Click to continue!'},
+                    { target: '.step1', content: 'U started a Guide-Tour, to create a new Annotationpipline'  }, //Filler
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-body > div > div.row > div.col-sm-6 > form > div:nth-child(1)', content: 'Put in the Name of the Annotation Task.'},
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-body > div > div.row > div.col-sm-6 > form > div:nth-child(2)', content: 'If you have some Instructions for the Annotationworker, but them in. This is not essential'}, 
                     { target: 'body > div:nth-child(7) > div > div.modal.fade.show > div > div > div.modal-body > div > div.container-stepper-wizard > div:nth-child(2) > div.shape-stepper-wizard', content: 'Click on this Button to go on.'},
@@ -101,7 +103,7 @@ const TheHeader = ({ numNavItems }) => {
                 
                 }}
             >Start Tour</button>
-
+            
             <CHeaderBrand className="mx-auto d-lg-none" to="/dashboard">
                 <img alt="" style={{ height: 40 }} className="img-avatar" />
             </CHeaderBrand>
