@@ -2,6 +2,8 @@
 
 import pipelineStartActions from "../pipeline/pipelineStart";
 import DatasourceModal from "../../containers/pipeline/start/2/modals/types/DatasourceModal";
+import { element } from "prop-types";
+
 
 
 export const selectPipelineById = (id) => async (dispatch, getState) => {
@@ -27,6 +29,17 @@ export const handleNodeClick = (id) => (dispatch, getState) => {
     }
 };
 
+export const toggleDropdown = () => {
+    return {
+        type: 'TOGGLE_DATASOURCE_DROPDOWN',
+    };
+};
 
 
-// hier soll der Zustand von dem Dropdownmenü verarbeitet werden oder weitergegeben?
+export const selectD = (elementId, path, fsId) => ({
+
+    type: 'PIPELINE_START_DATASOURCE_SELECT_DROPDOWN',
+    payload: { elementId, path, fsId },
+    
+});
+

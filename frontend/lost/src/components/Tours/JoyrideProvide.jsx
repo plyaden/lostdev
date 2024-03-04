@@ -2,15 +2,17 @@ import React, { createContext, useContext, useEffect, useRef } from 'react';
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import DatasourceModal from '../../containers/pipeline/start/2/modals/types/DatasourceModal';
 
-import { selectPipelineById, handleNodeClick } from '../../actions/Joyride/joyRideActions';
+import { selectPipelineById, handleNodeClick , toggleDropdown, handleSelectDropdownItem  } from '../../actions/Joyride/joyRideActions';
 
 const JoyrideContext = createContext();
 
 export const JoyrideProvider = ({ children }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  //const [isModalLoaded, setIsModalLoaded] = useState(false);
+  
+
   const [state, setState] = React.useState({
     run: false,
     stepIndex: 0,
@@ -75,14 +77,13 @@ export const JoyrideProvider = ({ children }) => {
         // Adjust logic here, e.g., delay or skip step
       }
       //if(tourType === 1) {
-        if (action === ACTIONS.NEXT && [1, 2, 3, 4].includes(index)) {
+        if (action === ACTIONS.NEXT && [1, 2, 3, 4, 5 ,6].includes(index)) {
 
         if (index === 1) { history.push("./startpipeline"); }
         if (index === 2) { dispatch(selectPipelineById(6)); }
         if (index === 3) { dispatch(handleNodeClick(0)); }
-        if (index === 4) {
-          console.log(index)
-        }
+        if (index === 5) { dispatch(toggleDropdown()); }
+        if (index === 6) { handleSelectDropdownItem('admin', '/home/lost/data/1', 2)}
       //} else if (tourType === 2) {
         
       //}

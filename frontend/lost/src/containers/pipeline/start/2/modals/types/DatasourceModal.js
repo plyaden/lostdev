@@ -7,16 +7,24 @@ import Table from '../../../../globalComponents/modals/Table'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { Divider, Icon, Label } from 'semantic-ui-react'
 import actions from '../../../../../../actions/pipeline/pipelineStartModals/datasource'
+import {toggleDropdown } from '../../../../../../actions/Joyride/joyRideActions';
 
 import { connect } from 'react-redux'
 const { selectDropdown, pipeStartUpdateDS } = actions
 
+
+const initialState = {
+    isDropdownOpen:false
+}
 const DEFAULT_TEXT_PATH = 'No path selected!'
 class DatasourceModal extends Component {
     constructor(props) {
         super(props)
-        this.toggle = this.toggle.bind(this)
-        this.selectItem = this.selectItem.bind(this)
+        //this.toggle = this.toggle.bind(this)
+        //this.selectItem = this.selectItem.bind(this)
+        this.selectItem = this.selectItem.bind(this);
+        this.selectDS = this.selectDS.bind(this);
+
         let selectedFs = undefined
         let selectedPath = DEFAULT_TEXT_PATH
         let selectedPathColor = 'red'
@@ -35,8 +43,7 @@ class DatasourceModal extends Component {
             }
         }
         this.state = {
-            dropdownOpen: false,
-            dsDropdownOpen: false,
+            ...this.state,
             selectedFs: selectedFs,
             selectedPath: selectedPath,
             selectedPathColor: selectedPathColor,
@@ -44,17 +51,17 @@ class DatasourceModal extends Component {
         }
     }
 
-    toggle() {
-        this.setState((prevState) => ({
-            dropdownOpen: !prevState.dropdownOpen,
-        }))
-    }
+    // toggle() {
+    //     this.setState((prevState) => ({
+    //         dropdownOpen: !prevState.dropdownOpen,
+    //     }))
+    // }
 
-    toggleDs() {
-        this.setState({
-            dsDropdownOpen: !this.state.dsDropdownOpen,
-        })
-    }
+    // toggleDs() {
+    //     this.setState({
+    //         dsDropdownOpen: !this.state.dsDropdownOpen,
+    //     })
+    // }
 
     selectItem(path) {
         if (path !== this.state.selectedPath) {
@@ -97,9 +104,9 @@ class DatasourceModal extends Component {
         return (
             <div>
                 <Dropdown
-                    isOpen={this.state.dsDropdownOpen}
-                    toggle={(e) => {
-                        this.toggleDs()
+                    isOpen={this.props.isDropdownOpen}
+                    toggle={() => {
+                        this.props.toggleDropdown()
                     }}
                 >
                     <DropdownToggle caret>
@@ -173,4 +180,14 @@ class DatasourceModal extends Component {
     }
 }
 
-export default connect(null, { selectDropdown, pipeStartUpdateDS })(DatasourceModal)
+const mapStateToProps = (state) => ({
+    isDropdownOpen: state.pipelineStart.isDropdownOpen,
+});
+
+const mapDispatchToProps = {
+    toggleDropdown, 
+    selectDropdown,
+    pipeStartUpdateDS,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DatasourceModal);

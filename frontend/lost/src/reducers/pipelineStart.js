@@ -738,16 +738,15 @@ export default (state = INITITAL_STATE, action) => {
                     response: action.payload,
                 },
             }
+        case 'TOGGLE_DATASOURCE_DROPDOWN':
+            return {
+                ...state,
+                isDropdownOpen: !state.isDropdownOpen
+            };
+
         default:
             return state
 
-        // case 'TOGGLE_DATASOURCE_DROPDOWN':
-        //     return {
-        //         ...state,
-        //         step1Data: {
-        //             ...state.step1Data,
-        //             datasourceDropdownOpen: !state.step1Data.datasourceDropdownOpen, // Toggle the dropdown state
-        //         },
-        //     };
+
     }
 }
